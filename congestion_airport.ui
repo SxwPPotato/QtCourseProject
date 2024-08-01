@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>congestion_airport</class>
+ <widget class="QDialog" name="congestion_airport">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>888</width>
+    <height>630</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="3">
+    <widget class="QComboBox" name="cb_mounth">
+     <item>
+      <property name="text">
+       <string>Январь</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Февраль</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Март</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Апрель</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Май</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Июнь</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Июль</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Август</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Сентябрь</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Октябрь</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Ноябрь</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Декабрь</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QRadioButton" name="rb_mounth">
+     <property name="text">
+      <string>За месяц</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="4">
+    <widget class="QTableWidget" name="tw_workload"/>
+   </item>
+   <item row="2" column="3">
+    <widget class="QPushButton" name="pb_close">
+     <property name="text">
+      <string>Закрыть</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QRadioButton" name="rb_year">
+     <property name="text">
+      <string>За год</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

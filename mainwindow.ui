@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>942</width>
+    <height>656</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="5" column="0">
+     <widget class="QRadioButton" name="rb_departure">
+      <property name="text">
+       <string>вылет</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0">
+     <widget class="QPushButton" name="pb_get_data">
+      <property name="text">
+       <string>Получить данные</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="lb_statusConnect">
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QDateEdit" name="DateEdit">
+      <property name="minimumDateTime">
+       <datetime>
+        <hour>0</hour>
+        <minute>0</minute>
+        <second>0</second>
+        <year>2016</year>
+        <month>8</month>
+        <day>15</day>
+       </datetime>
+      </property>
+      <property name="maximumDate">
+       <date>
+        <year>2017</year>
+        <month>9</month>
+        <day>14</day>
+       </date>
+      </property>
+      <property name="minimumDate">
+       <date>
+        <year>2016</year>
+        <month>8</month>
+        <day>15</day>
+       </date>
+      </property>
+      <property name="displayFormat">
+       <string>yyyy-MM-dd</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QRadioButton" name="rb_arrival">
+      <property name="text">
+       <string>прилет</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QPushButton" name="pb_congestion">
+      <property name="text">
+       <string>Просмотреть загруженость аэропортов</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QComboBox" name="cb_airport_list"/>
+    </item>
+    <item row="2" column="0">
+     <widget class="QTableWidget" name="tb_result"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>942</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
