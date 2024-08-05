@@ -7,18 +7,24 @@ congestion_airport::congestion_airport(QWidget *parent) :
     ui(new Ui::congestion_airport)
 {
     ui->setupUi(this);
+    ui->cb_mounth->setEnabled(false);
     dataBase = new DataBase(this);
     connect(this, &congestion_airport::sig_req, this, &congestion_airport::full_request_arriving_aircraft);
+
+
 
     chart = new QChart( );
     chart->legend()->setVisible(false);
     chartView = new QChartView(chart);
-    graphClass = new GraphicChart(FD);
+
+    layout = new QGridLayout;
+    ui->tw_graph->setLayout(layout);
+    layout->addWidget(chartView);
+
 
     chartView->show( );
 
     connect(this, &congestion_airport::sig_graph, this, &congestion_airport::show_graph);
-
 
 }
 
@@ -30,13 +36,9 @@ congestion_airport::~congestion_airport()
     delete chartView;
 }
 
-void congestion_airport::on_pb_close_clicked()
-{
-    close();
-}
-
 void congestion_airport::ScreenStatisticFromDB(const QTableWidget *widget, QVector<int> y_count_flight,int type_req)
 {
+
             ui->tw_workload->setRowCount(widget->rowCount( ));
             ui->tw_workload->setColumnCount(widget->columnCount( ));
             y_count_flights.clear();
@@ -56,21 +58,36 @@ void congestion_airport::ScreenStatisticFromDB(const QTableWidget *widget, QVect
             }
 
             ui->tw_workload->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
             if(type_req == 0){
-                emit sig_graph(x_mounth,y_count_flights);
+                emit sig_graph(x_mounth,y_count_flights,year_stat);
             }
             else if(type_req == 1){
-                emit sig_graph(x_days,y_count_flights);
+                emit sig_graph(x_days,y_count_flights,day_stat);
             }
-
-
-
 
 }
 
 void congestion_airport::received_signal(QString aircodes,DataBase* db){
  aircode = aircodes;
  dataBase = db;
+
+ if(chart->series().isEmpty() == false){
+     graphClass->ClearGraph(chart);
+ }
+ ui->rb_mounth->setChecked(true);
+ ui->rb_year->setEnabled(true);
+ ui->cb_mounth->setEnabled(true);
+ ui->rb_mounth->setEnabled(false);
+ emit sig_req(aircode,day_stat);
+ auto req_flight = [&]{dataBase->RequestToDB(request_day_stat,activated,statistic,day_stat);};
+ for(int i = 0; i < 31;i++){
+ x_days.push_back( i + 1);
+ }
+
+ graphClass = new GraphicChart(FD,day_stat);
+
+ QtConcurrent::run(req_flight);
 }
 
 void congestion_airport::full_request_arriving_aircraft(QString request, int type_req ){
@@ -90,12 +107,22 @@ void congestion_airport::full_request_arriving_aircraft(QString request, int typ
 
 void congestion_airport::on_rb_year_clicked()
 {
+    if(chart->series().isEmpty() == false){
+        graphClass->ClearGraph(chart);
+    }
+    ui->rb_year->setEnabled(false);
+    ui->rb_mounth->setEnabled(true);
+    ui->cb_mounth->setEnabled(false);
     emit sig_req(aircode,year_stat);
     x_mounth.clear();
     for(int i = 0;i <12;i++ ){
     x_mounth.push_back(i + 1);
     }
     auto req_flight = [&]{dataBase->RequestToDB(request_year_statistic,activated,statistic,year_stat);};
+
+    graphClass = new GraphicChart(FD,year_stat);
+
+
 
     QtConcurrent::run(req_flight);
 
@@ -104,11 +131,21 @@ void congestion_airport::on_rb_year_clicked()
 
 void congestion_airport::on_rb_mounth_clicked()
 {
+    if(chart->series().isEmpty() == false){
+        graphClass->ClearGraph(chart);
+    }
+    ui->rb_year->setEnabled(true);
+    ui->cb_mounth->setEnabled(true);
+    ui->rb_mounth->setEnabled(false);
     emit sig_req(aircode,day_stat);
     auto req_flight = [&]{dataBase->RequestToDB(request_day_stat,activated,statistic,day_stat);};
     for(int i = 0; i < 31;i++){
     x_days.push_back( i + 1);
     }
+
+    graphClass = new GraphicChart(FD,day_stat);
+
+
 
     QtConcurrent::run(req_flight);
 
@@ -143,17 +180,34 @@ void congestion_airport::on_cb_mounth_currentIndexChanged(int index)
 
 
 
-void congestion_airport::show_graph(QVector<int> x, QVector<int> y){
+void congestion_airport::show_graph(QVector<int> x, QVector<int> y, int typeGraph){
+    if(typeGraph == 0){
     if(chart->series().isEmpty() == false){
-           graphClass->ClearGraph(chart);
-       }
+        graphClass->ClearGraph(chart);
+    }
 
-       graphClass->AddDataToGrahp(x,y, i);
+       graphClass->AddDataToGrahp(x,y, i,typeGraph);
 
        i++;
 
-       graphClass->UpdateGraph(chart);
+
+       graphClass->UpdateGraph(chart,typeGraph);
        ViewGraph();
+    }
+
+    else if(typeGraph == 1){
+        if(chart->series().isEmpty() == false){
+               graphClass->ClearGraph(chart);
+           }
+
+           graphClass->AddDataToGrahp(x,y, i,typeGraph);
+
+           i++;
+
+           graphClass->UpdateGraph(chart,typeGraph);
+           ViewGraph();
+
+    }
 
 }
 
@@ -161,6 +215,11 @@ void congestion_airport::ViewGraph()
 {
     chartView->chart()->createDefaultAxes();
     chartView->show( );
+}
+
+void congestion_airport::on_pb_close_clicked()
+{
+    close();
 }
 
 

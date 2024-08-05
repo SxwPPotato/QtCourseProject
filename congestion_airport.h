@@ -34,17 +34,19 @@ private slots:
 
     void on_cb_mounth_currentIndexChanged(int index);
 
-    void show_graph(QVector<int> x, QVector<int> y);
+    void show_graph(QVector<int> x, QVector<int> y, int typeGraph);
 
 public slots:
+
     void received_signal(QString aircode, DataBase* db);
 
     void ScreenStatisticFromDB(const QTableWidget *widget, QVector<int> y_count_flights,int type_req);
 
 signals:
+
     void sig_req(QString request_str, int type_req);
 
-    void sig_graph(QVector<int> x, QVector<int> y);
+    void sig_graph(QVector<int> x, QVector<int> y, int typeGraph);
 
 private:
     Ui::congestion_airport *ui;
@@ -72,6 +74,7 @@ private:
     GraphicChart* graphClass;
     QChart* chart;
     QChartView* chartView;
+    QGridLayout *layout;
 
     void ViewGraph(void);
 

@@ -9,14 +9,37 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>888</width>
-    <height>630</height>
+    <width>838</width>
+    <height>632</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="6" column="0" colspan="4">
+    <widget class="QPushButton" name="pb_close">
+     <property name="text">
+      <string>Закрыть</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QRadioButton" name="rb_year">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="text">
+      <string>За год</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="3">
     <widget class="QComboBox" name="cb_mounth">
      <item>
@@ -88,22 +111,11 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="4">
+   <item row="3" column="0" colspan="4">
     <widget class="QTableWidget" name="tw_workload"/>
    </item>
-   <item row="2" column="3">
-    <widget class="QPushButton" name="pb_close">
-     <property name="text">
-      <string>Закрыть</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0" colspan="2">
-    <widget class="QRadioButton" name="rb_year">
-     <property name="text">
-      <string>За год</string>
-     </property>
-    </widget>
+   <item row="4" column="0" colspan="4">
+    <widget class="QTableWidget" name="tw_graph"/>
    </item>
   </layout>
  </widget>

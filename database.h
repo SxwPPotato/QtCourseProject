@@ -24,7 +24,7 @@ public:
     bool ConnectToDataBase();
     void DisconnectFromDataBase(QString nameDb = "");
     void RequestToDB(QString request, int Type_message,int type_req, int type_stat);
-    QSqlError GetLastError(void);
+    QSqlError GetLastError();
 
     void ReadAnswerFromDB(int type_req,int type_stat);
 

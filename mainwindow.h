@@ -25,7 +25,7 @@ public:
 
 public slots:
     void ReceiveStatusConnectionToDB(bool status);
-    void ReceiveStatusRequestToDB(QSqlError err,int Type_message, int type_req, int type_stat);
+    void ReceiveStatusRequestToDB(QSqlError err, int Type_message, int type_req, int type_stat);
     void ScreenDataFromDB(const QTableWidget *widget);
 
     void CbScreenDataFromDB(const QComboBox * cb,std::vector<QString> airpoetsCode);
@@ -37,8 +37,8 @@ private slots:
     void on_pb_congestion_clicked();
 
 signals:
-     void sig_req(QString request_str, QString date, int type_req);
-     void sig_aircode( QString airportCode,DataBase *db);
+    void sig_req(QString request_str, QString date, int type_req);
+    void sig_aircode( QString airportCode,DataBase *db);
 
 private:
     Ui::MainWindow *ui;

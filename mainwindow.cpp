@@ -89,6 +89,7 @@ void MainWindow::ReceiveStatusConnectionToDB(bool status)
         ui->lb_statusConnect->setText("Отключено");
         ui->lb_statusConnect->setStyleSheet("color:red");
         msg->exec();
+        dataBase->ConnectToDataBase();
     }
 
 }
@@ -179,13 +180,12 @@ void MainWindow::on_pb_get_data_clicked()
 
 
 void MainWindow::on_pb_congestion_clicked()
-{
-    if(airportCode.isEmpty() == true){
-        int airport = ui->cb_airport_list->currentIndex();
-       airportCode = airportsCode[airport];
-    }
+{ 
+    int airport = ui->cb_airport_list->currentIndex();
+    airportCode = airportsCode[airport];
+
     emit sig_aircode(airportCode, dataBase);
-conqestion->exec();
+    conqestion->exec();
 }
 
 

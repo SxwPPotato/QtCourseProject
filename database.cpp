@@ -123,6 +123,7 @@ void DataBase::ReadAnswerFromDB(int type_req,int type_stat)
         emit sig_SendDataFromDB(tableWidget);
     }
     else if (type_req == 2){
+
         emit sig_SendStatisticFromDB(tableWidget,y_count_flights,type_stat);
     }
 
@@ -141,4 +142,5 @@ void DataBase::DisconnectFromDataBase(QString nameDb)
 QSqlError DataBase::GetLastError()
 {
    return dataBase->lastError();
+
 }
