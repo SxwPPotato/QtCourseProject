@@ -83,7 +83,7 @@ void congestion_airport::received_signal(QString aircodes,DataBase* db){
  for(int i = 0; i < 31;i++){
  x_days.push_back( i + 1);
  }
- //day_req_flight.push_back(req_flight);
+ day_req_flight.push_back(req_flight);
 
  graphClass = new GraphicChart(FD,day_stat);
 
