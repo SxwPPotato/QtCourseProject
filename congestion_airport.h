@@ -12,10 +12,12 @@
 
 #define FD 1000.0
 
+
 namespace Ui {
 class congestion_airport;
 }
 
+//template <class Function>
 class congestion_airport : public QDialog
 {
     Q_OBJECT
@@ -71,10 +73,17 @@ private:
 
     QVector<int> x_days,x_mounth, y_count_flights;
 
+    QVector<DataBase*> day_req_flight;
+
+    std::string year_req_flight;
+
     GraphicChart* graphClass;
     QChart* chart;
     QChartView* chartView;
     QGridLayout *layout;
+
+
+
 
     void ViewGraph(void);
 

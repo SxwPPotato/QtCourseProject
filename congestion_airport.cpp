@@ -21,7 +21,6 @@ congestion_airport::congestion_airport(QWidget *parent) :
     ui->tw_graph->setLayout(layout);
     layout->addWidget(chartView);
 
-
     chartView->show( );
 
     connect(this, &congestion_airport::sig_graph, this, &congestion_airport::show_graph);
@@ -84,6 +83,7 @@ void congestion_airport::received_signal(QString aircodes,DataBase* db){
  for(int i = 0; i < 31;i++){
  x_days.push_back( i + 1);
  }
+ //day_req_flight.push_back(req_flight);
 
  graphClass = new GraphicChart(FD,day_stat);
 
