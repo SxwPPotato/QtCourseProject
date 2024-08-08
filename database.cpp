@@ -38,7 +38,7 @@ bool DataBase::ConnectToDataBase()
 
 }
 
-void DataBase::RequestToDB(QString request,int Type_message, int type_req, int type_stat)
+void DataBase::RequestToDB(QString request,int Type_message, int type_req, int type_stat, int mount)
 {
 
     *simpleQuery = QSqlQuery(*dataBase);
@@ -49,7 +49,7 @@ void DataBase::RequestToDB(QString request,int Type_message, int type_req, int t
     }
 
 
-    emit sig_SendStatusRequest(err,Type_message,type_req,type_stat);
+    emit sig_SendStatusRequest(err,Type_message,type_req,type_stat,mount);
 
 
 }
@@ -77,7 +77,7 @@ void DataBase::AirportList()
 
 
 
-void DataBase::ReadAnswerFromDB(int type_req,int type_stat)
+void DataBase::ReadAnswerFromDB(int type_req,int type_stat, int mounth)
 {
 
     tableWidget->setRowCount(0);
@@ -124,7 +124,7 @@ void DataBase::ReadAnswerFromDB(int type_req,int type_stat)
     }
     else if (type_req == 2){
 
-        emit sig_SendStatisticFromDB(tableWidget,y_count_flights,type_stat);
+        emit sig_SendStatisticFromDB(tableWidget,y_count_flights,type_stat,mounth);
     }
 
 

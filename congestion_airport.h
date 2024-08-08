@@ -42,7 +42,7 @@ public slots:
 
     void received_signal(QString aircode, DataBase* db);
 
-    void ScreenStatisticFromDB(const QTableWidget *widget, QVector<int> y_count_flights,int type_req);
+    void ScreenStatisticFromDB(const QTableWidget *widget, QVector<int> y_count_flights,int type_req, int mount);
 
 signals:
 
@@ -73,9 +73,65 @@ private:
 
     QVector<int> x_days,x_mounth, y_count_flights;
 
-    QVector<DataBase*> day_req_flight;
+    QVector<int> year_req_flight;
 
-    std::string year_req_flight;
+    QVector<int> year_count_req_flight;
+
+    //QVector<int> mounth_req_flight;
+
+    //QVector<int> mounth_count_req_flight;
+
+    QVector<int> January_req_flight;
+
+    QVector<int> February_req_flight;
+
+    QVector<int> April_req_flight;
+
+    QVector<int> March_req_flight;
+
+    QVector<int> May_req_flight;
+
+    QVector<int> June_req_flight;
+
+    QVector<int> July_req_flight;
+
+    QVector<int> August_req_flight;
+
+    QVector<int> September_req_flight;
+
+    QVector<int> October_req_flight;
+
+    QVector<int> November_req_flight;
+
+    QVector<int> December_req_flight;
+
+
+    QVector<int> January_count_req_flight;
+
+    QVector<int> February_count_req_flight;
+
+    QVector<int> April_count_req_flight;
+
+    QVector<int> March_count_req_flight;
+
+    QVector<int> May_count_req_flight;
+
+    QVector<int> June_count_req_flight;
+
+    QVector<int> July_count_req_flight;
+
+    QVector<int> August_count_req_flight;
+
+    QVector<int> September_count_req_flight;
+
+    QVector<int> October_count_req_flight;
+
+    QVector<int> November_count_req_flight;
+
+    QVector<int> December_count_req_flight;
+
+
+    //std::string year_req_flight;
 
     GraphicChart* graphClass;
     QChart* chart;

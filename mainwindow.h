@@ -25,7 +25,7 @@ public:
 
 public slots:
     void ReceiveStatusConnectionToDB(bool status);
-    void ReceiveStatusRequestToDB(QSqlError err, int Type_message, int type_req, int type_stat);
+    void ReceiveStatusRequestToDB(QSqlError err, int Type_message, int type_req, int type_stat, int mount);
     void ScreenDataFromDB(const QTableWidget *widget);
 
     void CbScreenDataFromDB(const QComboBox * cb,std::vector<QString> airpoetsCode);

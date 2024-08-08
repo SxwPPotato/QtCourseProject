@@ -23,10 +23,10 @@ public:
     void AddDataBase(QString nameDB);
     bool ConnectToDataBase();
     void DisconnectFromDataBase(QString nameDb = "");
-    void RequestToDB(QString request, int Type_message,int type_req, int type_stat);
+    void RequestToDB(QString request, int Type_message,int type_req, int type_stat, int mount);
     QSqlError GetLastError();
 
-    void ReadAnswerFromDB(int type_req,int type_stat);
+    void ReadAnswerFromDB(int type_req,int type_stat, int mount);
 
     void AirportList();
 
@@ -35,9 +35,9 @@ signals:
 
     void sig_SendDataFromDB(const QTableWidget *tableWg);
     void sig_SendStatusConnection(bool);
-    void sig_SendStatusRequest(QSqlError err,int Type_message, int type_req, int type_stat);
+    void sig_SendStatusRequest(QSqlError err,int Type_message, int type_req, int type_stat, int mount);
     void sig_CbSendDataFromDB(const QComboBox *cmBox, std::vector<QString> airportsCode);
-    void sig_SendStatisticFromDB(const QTableWidget *tableWidget, QVector<int> y_count_flights,int type_req);
+    void sig_SendStatisticFromDB(const QTableWidget *tableWidget, QVector<int> y_count_flights,int type_req, int mount);
 
 
 private:

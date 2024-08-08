@@ -37,7 +37,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     dataBase->ConnectToDataBase();
 
-    auto req = [&]{dataBase->RequestToDB(request_list_airports,automatic,empty,empty);};
+    auto req = [&]{dataBase->RequestToDB(request_list_airports,automatic,empty,empty,empty);};
 
     QtConcurrent::run(req);
 
@@ -94,7 +94,7 @@ void MainWindow::ReceiveStatusConnectionToDB(bool status)
 
 }
 
-void MainWindow::ReceiveStatusRequestToDB(QSqlError err,int Type_message, int type_req, int type_stat)
+void MainWindow::ReceiveStatusRequestToDB(QSqlError err,int Type_message, int type_req, int type_stat, int mount)
 {
 
     if(err.type() != QSqlError::NoError){
@@ -106,7 +106,7 @@ void MainWindow::ReceiveStatusRequestToDB(QSqlError err,int Type_message, int ty
             dataBase->AirportList();
         }
         else if(Type_message == activated){
-            dataBase->ReadAnswerFromDB(type_req,type_stat);
+            dataBase->ReadAnswerFromDB(type_req,type_stat, mount);
         }
     }
 
@@ -160,7 +160,7 @@ void MainWindow::on_pb_get_data_clicked()
 
         emit sig_req(airportCode,date,arrival);
 
-        auto req_flight = [&]{dataBase->RequestToDB(request_arriving_aircraft,activated,arrival,empty);};
+        auto req_flight = [&]{dataBase->RequestToDB(request_arriving_aircraft,activated,arrival,empty,empty);};
 
         QtConcurrent::run(req_flight);
 
@@ -170,7 +170,7 @@ void MainWindow::on_pb_get_data_clicked()
 
         emit sig_req(airportCode, date,departure);
 
-        auto req_flight = [&]{dataBase->RequestToDB(request_departing_aircraft,activated,departure,empty);};
+        auto req_flight = [&]{dataBase->RequestToDB(request_departing_aircraft,activated,departure,empty,empty);};
 
         QtConcurrent::run(req_flight);
 

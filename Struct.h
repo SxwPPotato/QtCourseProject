@@ -13,13 +13,28 @@ enum type_req{
     arrival = 0,
     departure = 1,
     statistic = 2,
-    empty = 3
+    empty = 999
 };
 
 enum statistic{
     year_stat = 0,
     day_stat = 1
 
+};
+
+enum mounth{
+    January = 0,
+    February = 1,
+    March = 2,
+    April = 3,
+    May = 4,
+    June = 5,
+    July = 6,
+    August = 7,
+    September = 8,
+    October = 9,
+    November= 10,
+    December = 11
 };
 
 
