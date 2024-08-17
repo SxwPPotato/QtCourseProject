@@ -17,7 +17,6 @@ namespace Ui {
 class congestion_airport;
 }
 
-//template <class Function>
 class congestion_airport : public QDialog
 {
     Q_OBJECT
@@ -37,6 +36,8 @@ private slots:
     void on_cb_mounth_currentIndexChanged(int index);
 
     void show_graph(QVector<int> x, QVector<int> y, int typeGraph);
+
+
 
 public slots:
 
@@ -76,10 +77,6 @@ private:
     QVector<int> year_req_flight;
 
     QVector<int> year_count_req_flight;
-
-    //QVector<int> mounth_req_flight;
-
-    //QVector<int> mounth_count_req_flight;
 
     QVector<int> January_req_flight;
 
@@ -131,7 +128,6 @@ private:
     QVector<int> December_count_req_flight;
 
 
-    //std::string year_req_flight;
 
     GraphicChart* graphClass;
     QChart* chart;
